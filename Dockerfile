@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:3.19.1
 
 RUN apk add --no-cache openssh-server tor s6
 RUN echo PermitRootLogin yes >> /etc/ssh/sshd_config

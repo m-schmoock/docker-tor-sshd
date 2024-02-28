@@ -19,7 +19,7 @@ sed -e s/PORT_TO_REPLACE/$TOR_PORT/ /etc/tor/torrc.tpl > /etc/tor/torrc
 s6-setuidgid tor tor --runasdaemon 1
 
 echo "Waiting for tor:"
-while ! grep -qF '100%: Done' /var/log/tor/notices.log
+while ! grep -qF 'Bootstrapped 100% (done): Done' /var/log/tor/notices.log
 do
   sleep 1
   echo -n .

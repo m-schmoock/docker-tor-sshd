@@ -6,7 +6,7 @@ RUN echo PermitRootLogin yes >> /etc/ssh/sshd_config
 COPY entry.sh /entry.sh
 COPY torrc.tpl /etc/tor/torrc.tpl
 
-ENV TOR_PORT 9999
+ENV TOR_PORT 22
 
 ENTRYPOINT ["/entry.sh"]
 

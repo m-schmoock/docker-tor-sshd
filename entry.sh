@@ -8,13 +8,12 @@ if grep -q ^root:*: /etc/shadow; then
 	echo "Setting random password for user root"
 	RND=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 20)
 	echo root:$RND | chpasswd
-	echo "Temporary password for root :: $RND"
-	echo
+	echo "Random password for root :: $RND"
 fi
 
 rm -f /var/log/tor/notices.log
 
-sed -e s/PORT_TO_REPLACE/$TOR_PORT/ /etc/tor/torrc.tpl > /etc/tor/torrc
+sed -e s/PORT_TO_REPLACE/$SSH_PORT/ /etc/tor/torrc.tpl > /etc/tor/torrc
 
 s6-setuidgid tor tor --runasdaemon 1
 
@@ -25,8 +24,16 @@ do
   echo -n .
 done
 
-echo " Done"
+echo " Done."
 echo
-echo "Your .onion sshd: $(cat /var/lib/tor/hidden_service/hostname) port $TOR_PORT"
+echo "Add this to your ~/.ssh/config:"
+echo
+echo "    Host *.onion"
+echo "        ProxyCommand torsocks nc %h %p"
+echo
+echo
+echo "Conenct using the generated password shown above via:>  ssh root@$(cat /var/lib/tor/hidden_service/hostname)"
+echo "Use this to copy your ssh pubkey:>  ssh-copy-id root@$(cat /var/lib/tor/hidden_service/hostname)"
+echo "Feel free to use local port forwarding to access web GUIs, e.g. via:> ssh -F 8080:192.168.0.123:80 ..."
 
 exec "$@"

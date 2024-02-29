@@ -9,7 +9,7 @@ RUN mv /etc/ssh/sshd_config.new /etc/ssh/sshd_config
 COPY entry.sh /entry.sh
 COPY torrc.tpl /etc/tor/torrc.tpl
 
-ENV TOR_PORT 22
+ENV SSH_PORT 22
 
 ENTRYPOINT ["/entry.sh"]
 

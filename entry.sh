@@ -9,7 +9,7 @@ if grep -q ^root:\\*: /etc/shadow; then
 	RND=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 20)
 	echo root:$RND | chpasswd
 	echo
-	echo "Random password for root user: $RND"
+	echo "RANDOM PASSWORD FOR root USER:  $RND"
 	echo
 fi
 

@@ -28,7 +28,7 @@ done
 echo " Done."
 
 echo
-echo "Add this to your ~/.ssh/config:"
+echo "Add this to the top of your ~/.ssh/config:"
 echo
 echo "	Host *.onion"
 echo "		ProxyCommand torsocks nc %h %p"

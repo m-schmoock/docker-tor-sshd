@@ -36,7 +36,7 @@ echo
 echo
 echo "Conenct using the generated password shown above via:>  ssh root@$(cat /var/lib/tor/hidden_service/hostname)"
 echo "Use this to copy your ssh pubkey:>  ssh-copy-id root@$(cat /var/lib/tor/hidden_service/hostname)"
-echo "Feel free to use local port forwarding to access web GUIs, e.g. via:> ssh -F 8080:192.168.0.123:80 ..."
+echo "Feel free to use local port forwarding to access web GUIs, e.g. via:> ssh -L 8080:192.168.0.123:80 ..."
 echo
 
 exec "$@"

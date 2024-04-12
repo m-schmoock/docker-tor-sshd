@@ -14,5 +14,4 @@ VOLUME /root/.ssh
 VOLUME /var/lib/tor/sshd
 
 ENTRYPOINT ["/entry.sh"]
-
 CMD ["/usr/sbin/sshd", "-D", "-f", "/etc/ssh/sshd_config"]

@@ -1,9 +1,8 @@
 #!/bin/bash
 
+DOCKER_REPO="mschmoock/tor-sshd"
 VERSION=$(cat VERSION)
 echo "Build hook running"
 
 echo "Building for x84_64..."
 docker build -t $DOCKER_REPO:$VERSION -f Dockerfile .
-echo "Building for arm32v6..."
-docker build -t $DOCKER_REPO:arm-$VERSION -f Dockerfile.arm32v6 .

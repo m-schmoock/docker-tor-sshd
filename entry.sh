@@ -1,9 +1,14 @@
 #!/bin/sh
 
+# fix directoy permissions
+chmod -R 700       /var/lib/tor
+chown -R tor:root  /var/lib/tor
+chown -R root:     /root/.ssh
+
+# gen ssh host keys
 /usr/bin/ssh-keygen -A
 
 # check if root has password defined
-
 if grep -q ^root:\\*: /etc/shadow; then
 	echo "Setting random password for user root"
 	RND=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 20)
